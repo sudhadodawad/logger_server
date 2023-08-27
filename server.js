@@ -13,7 +13,7 @@ app.use("/", routes);
 // Connect to MongoDB
 const connectDB = () => {
   try {
-    mongoose.connect("mongodb://127.0.0.1:27017/logging", {
+    mongoose.connect("mongodb+srv://sudhadodawad97:O4Z8T4pdBwmfbgLT@cluster0.aaaypjj.mongodb.net/?retryWrites=true&w=majority", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
