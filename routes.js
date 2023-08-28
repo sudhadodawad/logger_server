@@ -103,6 +103,28 @@ router.post('/api/logs/:product', async (req, res) => {
   }
 });
 
+router.post('/api/logsFilter/', async (req, res) => {
+  const { severity, product } = req.body;
+
+  try {
+    let query = {}; // Default query
+
+    if (severity && severity !== "all") {
+      query.logLevel = severity; // Add severity filter if provided
+    }
+
+    if (product) {
+      query.product = product; // Add product filter if provided
+    }
+
+    const logs = await LogModel.find(query).select('product logLevel message timestamp');
+    res.status(200).json(logs);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Error fetching logs.' });
+  }
+});
+
 module.exports = router;
   
 
